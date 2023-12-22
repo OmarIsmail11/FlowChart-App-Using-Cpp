@@ -14,8 +14,9 @@ private:
 	Point End;		//End point of the connector
 	bool Selected;
 	char arrowDir;
+	char outletDir;
 public:
-	Connector(Statement* Src, Statement* Dst,Point start,Point end,char arrowDir);
+	Connector(Statement* Src, Statement* Dst,Point start,Point end,char arrowDir,char outletDir);
 
 	void		setSrcStat(Statement *Src);
 	Statement*	getSrcStat();	

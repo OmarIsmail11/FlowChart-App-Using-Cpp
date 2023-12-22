@@ -2,8 +2,9 @@
 #define APPLICATION_MANAGER_H
 
 #include "DEFS.h"
-
 #include "Statements\Statement.h"
+
+
 class Input;
 class Output;
 

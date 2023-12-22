@@ -42,6 +42,10 @@ struct Point
 	int x,y;
 	Point(int a=0, int b=0)	//constructor
 	{ x=a;	y=b;	}
+	void operator =(int x){
+		this->x = x;
+		this->y = x;
+	}
 };
 
 #endif

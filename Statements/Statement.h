@@ -35,7 +35,7 @@ public:
 	virtual int getConnCnt()= 0;
 	
 	virtual char returnPointIn(Point &pIn) = 0;//retrun the inlit Point
-	virtual void returnPointOut(Point& pOut) = 0; // Return the Outlet Point location
+	virtual char returnPointOut(Point& pOut) = 0; // Return the Outlet Point location
 	
 	virtual bool IsOutletFull() = 0; //Add connector to the Statment
 	///TODO:The following functions should be supported by the Statement class

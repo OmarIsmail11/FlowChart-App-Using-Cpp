@@ -24,7 +24,12 @@ void AddValueAssign::ReadActionParameters()
 
 	pIn->GetPointClicked(Position);
 	pOut->ClearStatusBar();		
-
+	while (Position.y >= (UI.height - UI.ToolBarHeight) || Position.y <= UI.ToolBarHeight || Position.x >= UI.DrawingAreaWidth) {
+		Pause(100);//wait before show this mesage to make it not apearing as freezed give more dynamicaly
+		pManager->GetOutput()->PrintMessage("this region is not allowed put it in drwing area!!");
+		pIn->GetPointClicked(Position);
+		pOut->ClearStatusBar();
+	}
 	//TODO: Ask the user in the status bar to enter the LHS and set the data member
 	pOut->PrintMessage("Please Enter Variable Name then press Enter: ");
 	LHS = pIn->GetVariable(pOut);
@@ -40,10 +45,7 @@ void AddValueAssign::Execute()
 {
 	ReadActionParameters();
 		
-	if (Position.y >= UI.StatusBarHeight || Position.y <= UI.ToolBarHeight || Position.x >= UI.DrawingAreaWidth) {
-		pManager->GetOutput()->PrintMessage("YOU HAVE TO PUT IT IN THE DRAW AREA!!!");
-		return;
-	}
+
 	//Calculating left corner of assignement statement block
 	Point Corner;
 	Corner.x = Position.x - UI.ASSGN_WDTH/2;

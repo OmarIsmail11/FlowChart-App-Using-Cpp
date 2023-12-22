@@ -68,6 +68,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new Select(this);
 			break;
 
+		case SWITCH_SIM_MODE:
+			pOut->CreateSimulationToolBar();
+			
+			break;
+		case SWITCH_DSN_MODE:
+			pOut->CreateDesignToolBar();
+			
+			break;
 		case EXIT:
 			///create Exit Action here
 			
@@ -121,6 +129,7 @@ void ApplicationManager::DeleteStatement(Statement* pStat)
 		if (StatList[i] == pStat)
 			break;
 	delete StatList[i];
+	StatList[i] = NULL;
 
 	StatList[i] = StatList[StatCount-1];
 	StatList[StatCount - 1] = NULL;
@@ -137,7 +146,7 @@ void ApplicationManager::DeleteConn(Connector* pStat)
 	ConnList[i] = NULL;
 
 	ConnList[i] = ConnList[ConnCount - 1];
-	ConnList[StatCount - 1] = NULL;
+	ConnList[ConnCount - 1] = NULL;
 	ConnCount--;
 }
 void ApplicationManager::AddConnector(Connector* pConn)

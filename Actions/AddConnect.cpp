@@ -18,7 +18,7 @@ void AddConnect::ReadActionParameters()
 
 	while (StOut == NULL) {//If the User didn't click on any statment he have to choose or to cancel
 
-		if (pointOut.y <= 50) //if the user want to cancel he can click on the toolbar
+		if (pointOut.y <= 50 && pointOut.x >= UI.MenuItemWidth * ADD_CONNECTOR && pointOut.x <= UI.MenuItemWidth * (1 + ADD_CONNECTOR)) //if the user want to cancel he can click on the toolbar
 			return;
 		
 		pOut->PrintMessage("Error you have to choose a statment try again or click on the Icon again to cancel.");
@@ -30,16 +30,16 @@ void AddConnect::ReadActionParameters()
 	pOut->PrintMessage("Click on the End Point");
 	pIn->GetPointClicked(pointIn);
 	pOut->ClearStatusBar();
-	Statement*  StIn = pManager->GetStatement(pointOut);// get the statement did the user clicked on
+	Statement*  StIn = pManager->GetStatement(pointIn);// get the statement did the user clicked on
 
 	while (StIn == NULL) {//If the User didn't click on any statment he have to choose or to cancel
 
-		if (pointIn.y <= 50) //if the user want to cancel he can click on the toolbar
+		if (pointIn.y <= 50 && pointIn.x >= UI.MenuItemWidth * ADD_CONNECTOR && pointIn.x <= UI.MenuItemWidth * (1 + ADD_CONNECTOR)) //if the user want to cancel he can click on the toolbar
 			return;
 
 		pOut->PrintMessage("Error you have to choose a statment try again or click on the Icon again to cancel.");
 		pIn->GetPointClicked(pointIn);
-		StIn = pManager->GetStatement(pointOut);
+		StIn = pManager->GetStatement(pointIn);
 		pOut->ClearStatusBar();
 	}
 }
@@ -66,12 +66,13 @@ void AddConnect::Execute()
 		return;																		
 	}
 	
-	StOut->returnPointOut(pointOut); //update the location where the connector will out from.
+	 //update the location where the connector will out from.
+	char outletDir = StOut->returnPointOut(pointOut);//update the location where the connector will in to. and return the arrow direction
 	pointIn = pointOut;
 
 	char arrowDir = StIn->returnPointIn(pointIn);//update the location where the connector will in to. and return the arrow direction
 	
-	Connector* Cadd = new Connector(StOut, StIn, pointOut, pointIn, arrowDir);
+	Connector* Cadd = new Connector(StOut, StIn, pointOut, pointIn, arrowDir, outletDir);
 	pManager->AddConnector(Cadd);
 
 	StOut->SetConnectorOut(Cadd); //make the statment point to connector out from it

@@ -203,7 +203,7 @@ void Output::DrawAssign(Point Left, int width, int height, string Text, bool Sel
 	pWind->SetPen(BLACK, 2);
 	pWind->SetFont(25, 0,ROMAN );
 	if(Text.length() >=14)
-		pWind->SetFont(20, 0, ROMAN);
+		pWind->SetFont(18, 0, ROMAN);
 	
 
 	pWind->DrawString(Left.x + width /10, Left.y + height / 4, Text);
@@ -286,7 +286,7 @@ void Output::DrawOutput(Point Left, int width, int height, string Text, bool Sel
 }
 
 
-void Output::DrawConnector(Point p1, Point p2, const char in, bool Selected)
+void Output::DrawConnector(Point p1, Point p2, const char in,const char out, bool Selected)
 {
 	if (Selected)	//if stat is selected, it should be highlighted
 		pWind->SetPen(UI.HighlightColor, 2);	//use highlighting color
@@ -294,7 +294,7 @@ void Output::DrawConnector(Point p1, Point p2, const char in, bool Selected)
 		pWind->SetPen(BLACK, 1);	//use normal color
 
 	//Draw the arrow block rectangle
-	pWind->DrawArrow(p1.x, p1.y, p2.x, p2.y, in);
+	pWind->DrawArrow(p1.x, p1.y, p2.x, p2.y, in, out);
 
 }
 

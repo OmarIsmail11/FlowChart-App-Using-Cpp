@@ -1,5 +1,5 @@
 #include "Connector.h"
-Connector::Connector(Statement* Src, Statement* Dst, Point start, Point end,char arrowDir ):Selected(false),Start(start),End(end), arrowDir(arrowDir), SrcStat(Src), DstStat(Dst)
+Connector::Connector(Statement* Src, Statement* Dst, Point start, Point end,char arrowDir , char outletDir):Selected(false),Start(start),End(end), arrowDir(arrowDir), SrcStat(Src), DstStat(Dst), outletDir(outletDir)
 //When a connector is created, it must have a source statement and a destination statement
 //There are NO FREE connectors in the flowchart
 {
@@ -32,7 +32,7 @@ Point Connector::getEndPoint()
 
 void Connector::Draw(Output* pOut) const
 {
-	pOut->DrawConnector(Start,End, arrowDir, Selected);
+	pOut->DrawConnector(Start,End,  outletDir, arrowDir, Selected);
 }
 
 bool Connector::IsPointOnMe(Point p)

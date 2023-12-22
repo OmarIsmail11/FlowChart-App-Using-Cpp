@@ -982,28 +982,35 @@ void window::DrawArrow2(const int iX1, const int iY1, const int iX2, const int i
 	
 }
 
-void window::DrawArrow(const int iX1, const int iY1, const int iX2, const int iY2,const char in, const drawstyle dsStyle)
+void window::DrawArrow(const int iX1, const int iY1, const int iX2, const int iY2, const char out, const char in, const drawstyle dsStyle)
 {
-	int x2 = iX1;
+		
+	int newX1  = iX1;
+	int newY1 = iY1;
 
-	if (in == 'L') {
-		 x2 = iX1 + 60;
-	}
-	else if (in == 'R') {
-		x2 = iX1 - 60;
-	}
-		switch (iY2>iY1) {
+
+	switch (out) {
+		case 'D':
+
+			newY1  += 10;
+			DrawLine(iX1, iY1, iX1, newY1);
+			break;
+		case 'R':
+
+			newY1 = iY1;
+			newX1 += 10;
+			DrawLine(iX1, iY1, newX1, newY1);	
+			break;
+		}
+
+	switch (iY2>iY1) {
 		case 1:
-			DrawLine(iX1, iY1, iX1, iY1 + ((iY2 - iY1) / 10));
-			DrawLine(iX1, iY1 + ((iY2 - iY1) / 10), iX2, iY1 + ((iY2 - iY1) / 10));
-			DrawLine(iX2, iY1 + ((iY2 - iY1) / 10), iX2, iY2);
+			DrawLine(newX1, newY1, iX2, newY1);
+			DrawLine(iX2, newY1, iX2, iY2);
 			break;
 		case 0:
-			DrawLine(iX1, iY1, x2, iY1);
-			DrawLine(x2, iY1, x2, iY2);
-			DrawLine(x2, iY2, iX2, iY2);
-			break;
-
+			DrawLine(newX1, newY1, iX2, newY1);
+			DrawLine(iX2, newY1, iX2, iY2);
 		default:
 			break;
 		}

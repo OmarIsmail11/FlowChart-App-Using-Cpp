@@ -39,7 +39,7 @@ public:
 	//		Decide the parameters that should be passed to each of them
 	
 	//TODO: Add DrawConnector function
-	void DrawConnector(Point p1, Point p2, const char in, bool Selected = false);
+	void DrawConnector(Point p1, Point p2, const char in, const char out, bool Selected = false);
 
 	~Output();
 };

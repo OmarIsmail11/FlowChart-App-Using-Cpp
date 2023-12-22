@@ -261,7 +261,7 @@ public:
 
     void DrawArrow2(const int iX1, const int iY1, const int iX2, const int iY2, const drawstyle dsStyle = FILLED);
 
-    void DrawArrow(const int iX1, const int iY1, const int iX2, const int iY2, const char in, const drawstyle dsStyle = FILLED);
+    void DrawArrow(const int iX1, const int iY1, const int iX2, const int iY2, const char out, const char in, const drawstyle dsStyle = FILLED);
 
     void DrawRhombus(const int iX1, const int iY1, const int iX2, const int iY2, const int iX3, const int iY3, const int iX4, const int iY4, const drawstyle dsStyle = FILLED);
     // Works the same as DrawTriangle, but takes a pointer (or an array) of X and Y values
