@@ -2,7 +2,7 @@
 #define DEFS_H
 
 //This file contains some global constants and definitions to be used in the project.
-//This file contains some global constants and definitions to be used in the project.
+//This file contains some global constants and definitions to be used in the project
 
 enum  MODE	//Modes of operation
 {
