@@ -992,13 +992,13 @@ void window::DrawArrow(const int iX1, const int iY1, const int iX2, const int iY
 	switch (out) {
 		case 'D':
 
-			newY1  += 10;
+			newY1  += 4;
 			DrawLine(iX1, iY1, iX1, newY1);
 			break;
 		case 'R':
 
 			newY1 = iY1;
-			newX1 += 10;
+			newX1 += 4;
 			DrawLine(iX1, iY1, newX1, newY1);	
 			break;
 		}
