@@ -1,5 +1,7 @@
 #include "ApplicationManager.h"
 #include "Actions\AddValueAssign.h"
+#include "Actions\AddVarAssign.h"
+#include "Actions\AddOperatorAssign.h"
 #include "Actions\Select.h"
 #include "Actions\AddConnect.h"
 #include "Actions\Delete.h"
@@ -15,6 +17,7 @@ ApplicationManager::ApplicationManager()
 	
 	StatCount = 0;
 	ConnCount = 0;
+	VarCount = 0;
 	pSelectedStat = NULL;
 	pSelectedConn = NULL;	//no Statement is selected yet
 
@@ -50,6 +53,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	{
 		case ADD_VALUE_ASSIGN:
 			pAct = new AddValueAssign(this);
+			break;
+		case ADD_VAR_ASSIGN:
+			pAct = new AddVarAssign(this);
+			break;
+		case ADD_OPER_ASSIGN:
+			pAct = new AddOperatorAssign(this);
 			break;
 
 		case ADD_CONDITION:
@@ -211,6 +220,15 @@ void ApplicationManager::UpdateInterface() const
 		ConnList[i]->Draw(pOut);
 
 }
+////////////////////////////////////////////////////////////////////
+////////
+void ApplicationManager::AddVariables(pair <string, double>* var)
+{
+	if (VarCount <= MaxCount) {
+		Variables[VarCount] = var;
+		VarCount++;
+	}
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
 Input *ApplicationManager::GetInput() const
@@ -228,6 +246,8 @@ ApplicationManager::~ApplicationManager()
 		delete StatList[i];
 	for(int i=0; i<StatCount; i++)
 		delete ConnList[i];
+	for(int i=0; i<VarCount; i++)
+		delete Variables[i];
 	delete pIn;
 	delete pOut;
 	

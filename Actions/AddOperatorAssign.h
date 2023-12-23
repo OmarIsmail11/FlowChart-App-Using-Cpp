@@ -1,5 +1,5 @@
-#ifndef COND_H
-#define COND_H
+#ifndef ADD_Operator_ASSIGN_H
+#define ADD_Operator_ASSIGN_H
 
 #include "Action.h"
 #include "..\Statements\OpAssign.h"
@@ -10,7 +10,7 @@
 // 2 - Getting the LHS and RHS of the statement from the user (some of the parameters of this action)
 // 3 - Creating an object of Assignment class and passing it parameters
 // 4 - Adding the created object to the list of statements of the application manager
-class AddCond : public Action
+class AddOperatorAssign : public Action
 {
 private:
 	// in the data members of the actions
@@ -19,12 +19,12 @@ private:
 
 	Point Position;	//Position where the user clicks to add the stat.
 	string LHS;
-	string RHS1;
+	string varName;
 	string Operator;
-	double RHS;
+	double nom;
 
 public:
-	AddCond(ApplicationManager *pAppManager);
+	AddOperatorAssign(ApplicationManager *pAppManager);
 
 	//Read Assignemt statements position
 	virtual void ReadActionParameters();

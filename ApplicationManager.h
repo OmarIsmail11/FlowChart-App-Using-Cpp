@@ -3,7 +3,7 @@
 
 #include "DEFS.h"
 #include "Statements\Statement.h"
-
+#include <utility>
 
 class Input;
 class Output;
@@ -29,6 +29,10 @@ private:
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
+
+
+	pair<string, double>* Variables[MaxCount];
+	int VarCount;
 
 public:	
 	ApplicationManager(); 
@@ -64,6 +68,7 @@ public:
 	Output *GetOutput() const;      //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window
 	
+	void AddVariables(pair <string, double>* var);
 };
 
 #endif

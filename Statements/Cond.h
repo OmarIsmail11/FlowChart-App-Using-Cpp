@@ -1,5 +1,5 @@
-#ifndef VAR_ASSIGN_H
-#define VAR_ASSIGN_H
+#ifndef COND_H
+#define COND_H
 
 #include "Statement.h"
 

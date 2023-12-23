@@ -1,14 +1,16 @@
-#include "VarAssign.h"
+#include "OpAssign.h"
 #include <sstream>
 
 using namespace std;
 
-VarAssign::VarAssign(Point Lcorner, string LeftHS, string RightHS) :pOutConn(NULL)
+OpAssign::OpAssign(Point Lcorner, string LeftHS, string VarName, string Op,double nomb) :pOutConn(NULL)
 {
 	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
 	//       before passing it to the constructor of VarAssign
 	LHS = LeftHS;
-	RHS = RightHS;
+	this->VarName = VarName;
+	Operator = Op;
+	nom = nomb;
 	for (int i = 0; i < 2; i++) {
 		Connectors[i] = NULL;
 	}
@@ -24,78 +26,78 @@ VarAssign::VarAssign(Point Lcorner, string LeftHS, string RightHS) :pOutConn(NUL
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
-void VarAssign::setLHS(const string& L)
+void OpAssign::setLHS(const string& L)
 {
 	LHS = L;
 	UpdateStatementText();
 }
 
-void VarAssign::setRHS(double R)
+void OpAssign::setRHS(double R)
 {
 	RHS = R;
 	UpdateStatementText();
 }
 
 
-void VarAssign::Draw(Output* pOut) const
+void OpAssign::Draw(Output* pOut) const
 {
 	//Call Output::DrawAssign function to draw assignment statement 	
 	pOut->DrawAssign(LeftCorner, UI.ASSGN_WDTH, UI.ASSGN_HI, Text, Selected);
 
 }
 
-bool VarAssign::IsPointInMe(Point clickedPoint)
+bool OpAssign::IsPointInMe(Point clickedPoint)
 {
 	//if the point in the area of the assign return true
 	return (LeftCorner.x <= clickedPoint.x && LeftCorner.y <= clickedPoint.y &&
 		clickedPoint.x <= LeftCorner.x + UI.ASSGN_WDTH &&
 		clickedPoint.y <= LeftCorner.y + UI.ASSGN_HI);
 }
-void VarAssign::SetConnectorIn(Connector* cn)
+void OpAssign::SetConnectorIn(Connector* cn)
 {
 	pInConn = cn;
 	Connectors[1] = pInConn;
 }
 
-void VarAssign::SetConnectorOut(Connector* cn)
+void OpAssign::SetConnectorOut(Connector* cn)
 {
 	pOutConn = cn;
 	Connectors[0] = pOutConn;
 }
 
-Connector** VarAssign::returnConnectors()
+Connector** OpAssign::returnConnectors()
 {
 	return Connectors;
 }
 
-int VarAssign::getConnCnt()
+int OpAssign::getConnCnt()
 {
 	return this->connectedCnt;
 }
 
-char VarAssign::returnPointIn(Point& pIn)
+char OpAssign::returnPointIn(Point& pIn)
 {
 	pIn = Inlet;
 	return 'U';
 }
-char VarAssign::returnPointOut(Point& pOut)
+char OpAssign::returnPointOut(Point& pOut)
 {
 	pOut = Outlet;
 	return 'D';
 }
-bool VarAssign::IsOutletFull()
+bool OpAssign::IsOutletFull()
 {
 	return pOutConn != NULL;
 }
-VarAssign::~VarAssign()
+OpAssign::~OpAssign()
 {
 
 }
 //This function should be called when LHS or RHS changes
-void VarAssign::UpdateStatementText()
+void OpAssign::UpdateStatementText()
 {
 	//Build the statement text: Left handside then equals then right handside
 	ostringstream T;
-	T << LHS << " = " << RHS;
+	T << LHS << " = " << VarName<<Operator<<nom;
 	Text = T.str();
 }
