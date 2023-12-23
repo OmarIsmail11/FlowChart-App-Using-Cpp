@@ -1,10 +1,12 @@
 #include "ApplicationManager.h"
+#include "Actions\AddStart.h"
 #include "Actions\AddValueAssign.h"
 #include "Actions\AddVarAssign.h"
 #include "Actions\AddOperatorAssign.h"
 #include "Actions\Select.h"
 #include "Actions\AddConnect.h"
 #include "Actions\Delete.h"
+#include "Actions\AddEnd.h"
 #include "GUI\Input.h"
 #include "GUI\Output.h"
 #include <iostream>
@@ -17,7 +19,6 @@ ApplicationManager::ApplicationManager()
 	
 	StatCount = 0;
 	ConnCount = 0;
-	VarCount = 0;
 	pSelectedStat = NULL;
 	pSelectedConn = NULL;	//no Statement is selected yet
 
@@ -51,6 +52,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//According to ActioType, create the corresponding action object
 	switch (ActType)
 	{
+		case ADD_START:
+			pAct = new AddStart(this);
+			break;
+			case ADD_END:
+			pAct = new AddEnd(this);
+			break;
 		case ADD_VALUE_ASSIGN:
 			pAct = new AddValueAssign(this);
 			break;
@@ -222,13 +229,7 @@ void ApplicationManager::UpdateInterface() const
 }
 ////////////////////////////////////////////////////////////////////
 ////////
-void ApplicationManager::AddVariables(pair <string, double>* var)
-{
-	if (VarCount <= MaxCount) {
-		Variables[VarCount] = var;
-		VarCount++;
-	}
-}
+
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
 Input *ApplicationManager::GetInput() const
@@ -246,8 +247,6 @@ ApplicationManager::~ApplicationManager()
 		delete StatList[i];
 	for(int i=0; i<StatCount; i++)
 		delete ConnList[i];
-	for(int i=0; i<VarCount; i++)
-		delete Variables[i];
 	delete pIn;
 	delete pOut;
 	

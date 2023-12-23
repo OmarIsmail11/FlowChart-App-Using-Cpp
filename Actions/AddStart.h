@@ -1,8 +1,8 @@
-#ifndef COND_H
-#define COND_H
+#ifndef ADD_START_H
+#define ADD_START_H
 
 #include "Action.h"
-#include "..\Statements\OpAssign.h"
+#include "..\Statements\End.h"
 
 //Add Value Assignment Statement Action
 //This class is responsible for 
@@ -10,7 +10,7 @@
 // 2 - Getting the LHS and RHS of the statement from the user (some of the parameters of this action)
 // 3 - Creating an object of Assignment class and passing it parameters
 // 4 - Adding the created object to the list of statements of the application manager
-class AddCond : public Action
+class AddStart : public Action
 {
 private:
 	// in the data members of the actions
@@ -18,13 +18,9 @@ private:
 	// to be set in ReadActionParameters() then used in Execute()
 
 	Point Position;	//Position where the user clicks to add the stat.
-	string LHS;
-	string RHS1;
-	string Operator;
-	double RHS;
 
 public:
-	AddCond(ApplicationManager *pAppManager);
+	AddStart(ApplicationManager *pAppManager);
 
 	//Read Assignemt statements position
 	virtual void ReadActionParameters();

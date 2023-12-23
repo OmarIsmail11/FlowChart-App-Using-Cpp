@@ -21,6 +21,7 @@ OpAssign::OpAssign(Point Lcorner, string LeftHS, string VarName, string Op,doubl
 	//No connectors yet
 
 	Inlet.x = LeftCorner.x + UI.ASSGN_WDTH / 2;
+	Inlet.y = LeftCorner.y;
 
 	Outlet.x = Inlet.x;
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;

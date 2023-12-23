@@ -29,6 +29,9 @@ Output::Output()
 	UI.READ_WRITE_WIDTH = 150;
 	UI.READ_WRITE_HI = 50;
 
+	UI.START_END_WIDTH = 120;
+	UI.START_END_HI = 65;
+
 	//Create the output window
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
 	//Change the title
@@ -237,7 +240,7 @@ void Output::DrawStart(Point Left, int width, int height, bool Selected)
 
 	//Write statement text
 	pWind->SetPen(BLACK, 2);
-	pWind->DrawString(Left.x + width / 3, Left.y + height / 3, "START");
+	pWind->DrawString(Left.x + width / 4, Left.y + height / 2.7, "START");
 }
 
 void Output::DrawEnd(Point Left, int width, int height, bool Selected)
