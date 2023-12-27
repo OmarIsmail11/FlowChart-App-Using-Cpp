@@ -30,9 +30,7 @@ private:
 
 public:
 	Start(Point middletop);
-
-	void setLHS(const string& L);
-	void setRHS(double R);
+	Start(Start* start, Point position);
 
 	virtual void Draw(Output* pOut) const;
 
@@ -47,6 +45,7 @@ public:
 	virtual char returnPointIn(Point& pIn); //retrun the inlit Point
 	virtual char returnPointOut(Point& pOut); // Return the Outlet Point location
 	virtual bool IsOutletFull(); //Check if the Statment already have Outlet connetor
+	virtual bool isThereInlet(); //Check if the Statment already have Outlet connetor
 
 	~Start();
 };

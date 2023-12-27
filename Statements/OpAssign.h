@@ -31,7 +31,7 @@ private:
 
 public:
 	OpAssign(Point Lcorner, string LeftHS, string VarName, string Op, double nomb);
-
+	OpAssign(OpAssign* opassign, Point position);
 	void setLHS(const string& L);
 	void setRHS(double R);
 

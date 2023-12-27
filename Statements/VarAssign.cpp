@@ -25,6 +25,33 @@ VarAssign::VarAssign(Point Lcorner, string LeftHS, string RightHS) :pOutConn(NUL
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
+VarAssign::VarAssign(VarAssign* varassign, Point position) :pOutConn(NULL), Statement(ITM_VAR_ASSIGN)
+{
+	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
+	//       before passing it to the constructor of VarAssign
+	LHS = varassign->LHS;
+	RHS = varassign->RHS;
+	for (int i = 0; i < 2; i++) {
+		Connectors[i] = NULL;
+	}
+	connectedCnt = 2;
+	UpdateStatementText();
+
+	LeftCorner = position;
+	//No connectors yet
+
+	Inlet.x = LeftCorner.x + UI.ASSGN_WDTH / 2;
+	Inlet.y = LeftCorner.y;
+
+	Outlet.x = Inlet.x;
+	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
+}
+
+string VarAssign::GetLHS()
+{
+	return LHS;
+}
+
 void VarAssign::setLHS(const string& L)
 {
 	LHS = L;
@@ -91,6 +118,12 @@ bool VarAssign::IsOutletFull()
 VarAssign::~VarAssign()
 {
 
+}
+
+
+string VarAssign::GetRHS()
+{
+	return RHS;
 }
 //This function should be called when LHS or RHS changes
 void VarAssign::UpdateStatementText()

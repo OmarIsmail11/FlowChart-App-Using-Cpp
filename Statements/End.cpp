@@ -22,6 +22,23 @@ End::End(Point middletop):pOutConn(NULL),Statement(ITM_END)
 	//No connectors yet
 }
 
+End::End(End* end, Point position) :Statement(ITM_END)
+{
+	for (int i = 0; i < 2; i++) {
+		Connectors[i] = NULL;
+	}
+	connectedCnt = 2;
+	pOutConn = NULL;
+	UpdateStatementText();
+
+	this->middletop = position;
+	Inlet.x = middletop.x + UI.START_END_WIDTH / 2;
+	Inlet.y = middletop.y;
+
+	Outlet.x = Inlet.x;
+	Outlet.y = middletop.y + UI.START_END_HI;
+	//No connectors yet
+}
 
 void End::Draw(Output* pOut) const
 {

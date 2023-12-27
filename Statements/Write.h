@@ -33,6 +33,7 @@ private:
 
 public:
 	Write(Point Lcorner, string Variable);
+	Write(Write* write, Point position);
 
 	void SetVariable(const string& V);
 

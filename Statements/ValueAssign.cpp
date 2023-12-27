@@ -24,6 +24,25 @@ ValueAssign::ValueAssign(Point Lcorner, string LeftHS, double RightHS):pOutConn(
 	Outlet.x = Inlet.x;
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;	
 }
+ValueAssign::ValueAssign(ValueAssign* valueassign, Point position) :pOutConn(NULL), Statement(ITM_VALUE_ASSIGN)
+{
+	LHS = valueassign->LHS;
+	RHS = valueassign->RHS;
+	for (int i = 0; i < 2; i++) {
+		Connectors[i] = NULL;
+	}
+	connectedCnt = 2;
+	UpdateStatementText();
+
+	LeftCorner = position;
+	//No connectors yet
+
+	Inlet.x = LeftCorner.x + UI.ASSGN_WDTH / 2;
+	Inlet.y = LeftCorner.y;
+
+	Outlet.x = Inlet.x;
+	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
+}
 
 void ValueAssign::setLHS(const string &L)
 {
@@ -88,6 +107,16 @@ bool ValueAssign::IsOutletFull()
 {
 	return pOutConn != NULL;
 }
+
+string ValueAssign::GetLHS() {
+	return LHS;
+}
+int ValueAssign::GetRHS()
+{
+	return RHS;
+}
+
+
 ValueAssign::~ValueAssign()
 {
 		

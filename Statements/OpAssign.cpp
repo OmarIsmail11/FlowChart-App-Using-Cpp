@@ -27,16 +27,28 @@ OpAssign::OpAssign(Point Lcorner, string LeftHS, string VarName, string Op,doubl
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
-void OpAssign::setLHS(const string& L)
+OpAssign::OpAssign(OpAssign* opassign, Point position) :Statement(ITM_OPER_ASSIGN)
 {
-	LHS = L;
+	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
+	//       before passing it to the constructor of VarAssign
+	this->LHS = opassign->LHS;
+	this->VarName = opassign->VarName;
+	this->Operator = opassign->Operator;
+	this->nom = opassign->nom;
+	for (int i = 0; i < 2; i++) {
+		Connectors[i] = NULL;
+	}
+	connectedCnt = 2;
 	UpdateStatementText();
-}
 
-void OpAssign::setRHS(double R)
-{
-	RHS = R;
-	UpdateStatementText();
+	LeftCorner = position;
+	//No connectors yet
+
+	Inlet.x = LeftCorner.x + UI.ASSGN_WDTH / 2;
+	Inlet.y = LeftCorner.y;
+
+	Outlet.x = Inlet.x;
+	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
 

@@ -25,6 +25,26 @@ Read::Read(Point Lcorner, string Variable) :pOutConn(NULL),Statement(ITM_READ)
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
+Read::Read(Read* read, Point point) : Statement(ITM_READ)
+{
+	this->Variable = read->Variable;
+
+	for (int i = 0; i < 2; i++) {
+		Connectors[i] = NULL;
+	}
+	connectedCnt = 2;
+	UpdateStatementText();
+
+	LeftCorner = point;
+	//No connectors yet
+
+	Inlet.x = LeftCorner.x + UI.ASSGN_WDTH / 2;
+	Inlet.y = LeftCorner.y;
+
+	Outlet.x = Inlet.x;
+	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
+}
+
 void Read::SetVariable(const string& V)
 {
 	this->Variable = V;

@@ -25,6 +25,28 @@ Write::Write(Point Lcorner, string Variable) :pOutConn(NULL),Statement(ITM_WRITE
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
+Write::Write(Write* write, Point position) :pOutConn(NULL), Statement(ITM_WRITE)
+{
+	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
+	//       before passing it to the constructor of Write
+	this->Variable = write->Variable;
+
+	for (int i = 0; i < 2; i++) {
+		Connectors[i] = NULL;
+	}
+	connectedCnt = 2;
+	UpdateStatementText();
+
+	LeftCorner = position;
+	//No connectors yet
+
+	Inlet.x = LeftCorner.x + UI.ASSGN_WDTH / 2;
+	Inlet.y = LeftCorner.y;
+
+	Outlet.x = Inlet.x;
+	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
+}
+
 void Write::SetVariable(const string& V)
 {
 	this->Variable = V;

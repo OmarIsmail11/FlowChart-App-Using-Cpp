@@ -33,7 +33,7 @@ private:
 
 public:
 	Read(Point Lcorner, string Variable);
-
+	Read(Read* read, Point point);
 	void SetVariable(const string& V);
 
 	virtual void Draw(Output* pOut) const;

@@ -8,7 +8,7 @@
 class ValueAssign : public Statement
 {
 private:
-	char ID = 6;
+	char ID;
 	string LHS;	//Left Handside of the assignment (name of a variable)
 	double RHS;	//Right Handside (Value)
 	Connector* Connectors[2];//put the connector in array
@@ -34,6 +34,7 @@ private:
 	
 public:
 	ValueAssign(Point Lcorner, string LeftHS="", double RightHS=0);
+	ValueAssign(ValueAssign* valueassign, Point position);
 	
 	void setLHS(const string &L);
 	void setRHS(double R);

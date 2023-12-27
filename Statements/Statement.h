@@ -40,8 +40,11 @@ public:
 	
 	virtual char returnPointIn(Point &pIn) = 0;//retrun the inlit Point
 	virtual char returnPointOut(Point& pOut) = 0; // Return the Outlet Point location
+
 	
 	virtual bool IsOutletFull() = 0; //Add connector to the Statment
+
+	int GetStatementType();
 	///TODO:The following functions should be supported by the Statement class
 	///		It should then be overridden by each derived Statement
 	///		Decide the parameters that you should pass to each function and its return type

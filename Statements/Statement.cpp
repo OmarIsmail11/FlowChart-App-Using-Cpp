@@ -23,3 +23,8 @@ int Statement::GetStatementID()
 	return ID;
 }
 
+
+int Statement::GetStatementType()
+{
+	return StateType;
+}

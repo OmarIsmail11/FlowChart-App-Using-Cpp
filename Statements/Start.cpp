@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Start::Start(Point middletop):pOutConn(NULL),Statement(ITM_START)
+Start::Start(Point middletop):pOutConn(NULL), pInConn(NULL),Statement(ITM_START)
 {
 	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
 	//       before passing it to the constructor of VarAssign
@@ -23,6 +23,23 @@ Start::Start(Point middletop):pOutConn(NULL),Statement(ITM_START)
 	//No connectors yet
 }
 
+Start::Start(Start* start, Point position):pOutConn(NULL),pInConn(NULL),Statement(ITM_START)
+{
+	this->ID = 0;
+	for (int i = 0; i < 2; i++) {
+		Connectors[i] = NULL;
+	}
+	connectedCnt = 2;
+	UpdateStatementText();
+
+	this->middletop = position;
+	Inlet.x = middletop.x + UI.START_END_WIDTH / 2;
+	Inlet.y = middletop.y;
+
+	Outlet.x = Inlet.x;
+	Outlet.y = middletop.y + UI.START_END_HI;
+	//No connectors yet
+}
 
 void Start::Draw(Output* pOut) const
 {
@@ -73,6 +90,10 @@ char Start::returnPointOut(Point& pOut)
 bool Start::IsOutletFull()
 {
 	return pOutConn != NULL;
+}
+bool Start::isThereInlet()
+{
+	return pInConn;
 }
 Start::~Start()
 {

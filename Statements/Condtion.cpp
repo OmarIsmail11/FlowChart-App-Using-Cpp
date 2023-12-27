@@ -36,6 +36,33 @@ Condtion::Condtion(Point TVertix, string LeftHS, string Oper, string RightHS):St
 	
 }
 
+Condtion::Condtion(Condtion* CopiedCond, Point TVertix) :Statement(ITM_COND)
+{
+	LHS = CopiedCond->LHS;
+	CompOperator = CopiedCond->CompOperator;
+	RHS = CopiedCond->RHS;
+	R.YesNo = "NULL";
+	L.YesNo = "NULL";
+	R.pOutConn = NULL;
+	L.pOutConn = NULL;
+	connectedCnt = 3;
+
+	for (int i = 0; i < 2; i++) {
+		Connectors[i] = NULL;
+	}
+	this->UpdateStatementText();
+
+	TopVertix = TVertix;
+	//No connectors yet
+
+	Inlet.x = TVertix.x;
+	Inlet.y = TVertix.y;
+	OutletR.x = TVertix.x + UI.COND_WDTH / 2;
+	OutletR.y = TVertix.y + UI.COND_HI / 2;
+	OutletL.x = TVertix.x - UI.COND_WDTH / 2;
+	OutletL.y = TVertix.y + UI.COND_HI / 2;
+}
+
 void Condtion::setLHS(const string &L)
 {
 	LHS = L;

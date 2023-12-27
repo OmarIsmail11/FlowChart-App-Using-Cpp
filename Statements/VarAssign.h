@@ -32,7 +32,7 @@ private:
 
 public:
 	VarAssign(Point Lcorner, string LeftHS, string RightHS);
-
+	VarAssign(VarAssign* varassign, Point position);
 	void setLHS(const string& L);
 	void setRHS(double R);
 
@@ -50,6 +50,8 @@ public:
 	virtual char returnPointOut(Point& pOut); // Return the Outlet Point location
 	virtual bool IsOutletFull(); //Check if the Statment already have Outlet connetor
 
+	string GetLHS();
+	string GetRHS();
 	~VarAssign();
 };
 

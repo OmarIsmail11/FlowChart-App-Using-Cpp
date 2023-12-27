@@ -8,7 +8,7 @@
 class End : public Statement
 {
 private:
-	char ID = 2;
+
 	Connector* Connectors[2];//put the connector in array
 	Connector* pOutConn;	//Value Assignment Stat. has one Connector to next statement
 	Connector* pInConn;	//Value Assignment Stat. has one Connector to next statement
@@ -31,9 +31,8 @@ private:
 
 public:
 	End(Point middletop);
+	End(End* end, Point position);
 
-	void setLHS(const string& L);
-	void setRHS(double R);
 
 	virtual void Draw(Output* pOut) const;
 
