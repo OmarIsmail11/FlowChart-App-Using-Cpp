@@ -20,14 +20,14 @@ private:
 	Point Position;	//Position where the user clicks to add the stat.
 
 public:
-	AddEnd(ApplicationManager *pAppManager);
+	AddEnd(ApplicationManager* pAppManager);
 
 	//Read Assignemt statements position
 	virtual void ReadActionParameters();
-	
+
 	//Create and add an assignemnt statement to the list of statements
-	virtual void Execute() ;
-	
+	virtual void Execute();
+
 };
 
 #endif

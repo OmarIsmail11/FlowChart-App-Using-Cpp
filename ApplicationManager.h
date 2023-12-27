@@ -2,6 +2,7 @@
 #define APPLICATION_MANAGER_H
 
 #include "DEFS.h"
+#include "ErrorsType.h"
 #include "Statements\Statement.h"
 #include <utility>
 
@@ -64,6 +65,8 @@ public:
 	Input *GetInput() const;        //Return pointer to the input
 	Output *GetOutput() const;      //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window
+
+	RetErrors ApplicationManager::Validation();
 
 };
 

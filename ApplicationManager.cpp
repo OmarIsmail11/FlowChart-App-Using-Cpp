@@ -2,8 +2,10 @@
 #include "Actions\AddStart.h"
 #include "Actions\AddRead.h"
 #include "Actions\AddWrite.h"
+#include "Actions\Validate.h"
 #include "Actions\Cut.h"
 #include "Actions\Copy.h"
+#include "Actions\paste.h"
 #include "Actions\AddValueAssign.h"
 #include "Actions\AddVarAssign.h"
 #include "Actions\AddOperatorAssign.h"
@@ -103,6 +105,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case SELECT:
 			pAct = new Select(this);
+			break;	
+		case PASTE:
+			pAct = new Select(this);
+			break;
+		case VALIDATE:
+			pAct = new Validate(this);
 			break;
 
 		case SWITCH_SIM_MODE:
@@ -259,6 +267,54 @@ Input *ApplicationManager::GetInput() const
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
 ////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////
+////////validation
+RetErrors ApplicationManager::Validation()
+{
+	RetErrors TheReturn = OK;
+	//Case many Start Statement or Or no Start
+		bool multOrNoStrt = true;
+		for (int i = 0; i < StatCount; i++) {
+			if (dynamic_cast<Start*>(StatList[i])) {
+				if (multOrNoStrt) 
+					multOrNoStrt = false;
+				
+				else if ((dynamic_cast<Start*>(StatList[i]))->isThereInlet() != NULL)
+					return StartNoIn;
+				else
+					multOrNoStrt = true;
+
+			}
+		}
+		if (multOrNoStrt)
+			return MultiOrNoStart;
+
+	//Case many END Statement or Or no END
+		bool multOrNoEnd = true;
+		for (int i = 0; i < StatCount; i++) {
+			if (dynamic_cast<End*>(StatList[i])) {
+				if (multOrNoEnd)
+					multOrNoEnd = false;
+				else
+					multOrNoEnd = true;
+
+			}
+		}
+		if (multOrNoEnd)
+			return MultiOrNoEnd;
+		
+	//case free Statement without connectors
+		for (int i = 0; i < StatCount; i++) {
+			if (!StatList[i]->IsOutletFull()) {
+				TheReturn =  FreeState;
+			}
+		}
+	
+	return TheReturn;
+}
+
+
 
 
 //Destructor

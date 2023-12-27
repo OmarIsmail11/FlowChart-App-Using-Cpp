@@ -71,7 +71,7 @@ char End::returnPointOut(Point& pOut)
 }
 bool End::IsOutletFull()
 {
-	return pOutConn != NULL;
+	return true;
 }
 End::~End()
 {
