@@ -3,6 +3,7 @@
 #include "Actions\AddValueAssign.h"
 #include "Actions\AddVarAssign.h"
 #include "Actions\AddOperatorAssign.h"
+#include "Actions\AddCond.h"
 #include "Actions\Select.h"
 #include "Actions\AddConnect.h"
 #include "Actions\Delete.h"
@@ -69,7 +70,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case ADD_CONDITION:
-			///create AddCondition Action here
+			pAct = new AddCond(this);
+			break;
 
 			break;
 		case DEL:

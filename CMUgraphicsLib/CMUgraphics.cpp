@@ -1001,6 +1001,12 @@ void window::DrawArrow(const int iX1, const int iY1, const int iX2, const int iY
 			newX1 += 4;
 			DrawLine(iX1, iY1, newX1, newY1);	
 			break;
+		case 'L':
+
+			newY1 = iY1;
+			newX1 -= 4;
+			DrawLine(iX1, iY1, newX1, newY1);
+			break;
 		}
 
 	switch (iY2>iY1) {

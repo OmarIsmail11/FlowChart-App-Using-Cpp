@@ -67,6 +67,7 @@ void AddConnect::Execute()
 	}
 	
 	 //update the location where the connector will out from.
+	pointOut = pointIn;
 	char outletDir = StOut->returnPointOut(pointOut);//update the location where the connector will in to. and return the arrow direction
 
 	char arrowDir = StIn->returnPointIn(pointIn);//update the location where the connector will in to. and return the arrow direction
