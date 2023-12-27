@@ -1,5 +1,9 @@
 #include "ApplicationManager.h"
 #include "Actions\AddStart.h"
+#include "Actions\AddRead.h"
+#include "Actions\AddWrite.h"
+#include "Actions\Cut.h"
+#include "Actions\Copy.h"
 #include "Actions\AddValueAssign.h"
 #include "Actions\AddVarAssign.h"
 #include "Actions\AddOperatorAssign.h"
@@ -73,9 +77,24 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new AddCond(this);
 			break;
 
-			break;
 		case DEL:
 			pAct = new Delete(this);
+
+			break;	
+		case COPY:
+			pAct = new Copy(this);
+
+			break;	
+		case CUT:
+			pAct = new Cut(this);
+
+			break;	
+		case ADD_READ:
+			pAct = new AddWrite(this);
+
+			break;
+		case ADD_WRITE:
+			pAct = new AddRead(this);
 
 			break;
 		case ADD_CONNECTOR:

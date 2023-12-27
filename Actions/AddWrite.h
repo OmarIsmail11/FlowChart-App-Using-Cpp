@@ -1,8 +1,8 @@
-#ifndef ADD_START_H
-#define ADD_START_H
+#ifndef ADD_WRITE_H
+#define ADD_WRITE_H
 
 #include "Action.h"
-#include "..\Statements\Start.h"
+#include "..\Statements\Write.h"
 
 //Add Value Assignment Statement Action
 //This class is responsible for 
@@ -10,7 +10,7 @@
 // 2 - Getting the LHS and RHS of the statement from the user (some of the parameters of this action)
 // 3 - Creating an object of Assignment class and passing it parameters
 // 4 - Adding the created object to the list of statements of the application manager
-class AddStart : public Action
+class AddWrite : public Action
 {
 private:
 	// in the data members of the actions
@@ -18,9 +18,10 @@ private:
 	// to be set in ReadActionParameters() then used in Execute()
 
 	Point Position;	//Position where the user clicks to add the stat.
+	string variable;
 
 public:
-	AddStart(ApplicationManager *pAppManager);
+	AddWrite(ApplicationManager *pAppManager);
 
 	//Read Assignemt statements position
 	virtual void ReadActionParameters();

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-OpAssign::OpAssign(Point Lcorner, string LeftHS, string VarName, string Op,double nomb) :pOutConn(NULL)
+OpAssign::OpAssign(Point Lcorner, string LeftHS, string VarName, string Op,double nomb) :pOutConn(NULL),Statement(ITM_OPER_ASSIGN)
 {
 	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
 	//       before passing it to the constructor of VarAssign

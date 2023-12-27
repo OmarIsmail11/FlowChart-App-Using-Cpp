@@ -3,7 +3,7 @@
 
 using namespace std;
 
-End::End(Point middletop):pOutConn(NULL)
+End::End(Point middletop):pOutConn(NULL),Statement(ITM_END)
 {
 	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
 	//       before passing it to the constructor of VarAssign

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Condtion::Condtion(Point TVertix, string LeftHS, string Oper, string RightHS)
+Condtion::Condtion(Point TVertix, string LeftHS, string Oper, string RightHS):Statement(ITM_COND)
 {
 	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
 	//       before passing it to the constructor of Condtion

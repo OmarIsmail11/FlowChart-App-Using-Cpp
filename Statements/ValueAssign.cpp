@@ -3,7 +3,7 @@
 
 using namespace std;
 
-ValueAssign::ValueAssign(Point Lcorner, string LeftHS, double RightHS):pOutConn(NULL)
+ValueAssign::ValueAssign(Point Lcorner, string LeftHS, double RightHS):pOutConn(NULL),Statement(ITM_VALUE_ASSIGN)
 {
 	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
 	//       before passing it to the constructor of ValueAssign

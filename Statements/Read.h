@@ -1,14 +1,16 @@
-#ifndef END_H
-#define END_H
+#ifndef READ_H
+#define READ_H
 
 #include "Statement.h"
 
 //Value Assignment statement class
 //The value assignment statement assigns a value to a variable
-class End : public Statement
+class Read : public Statement
 {
 private:
-	char ID = 2;
+	char ID = 4;
+	string Variable;	//Left Handside of the assignment (name of a variable)
+	
 	Connector* Connectors[2];//put the connector in array
 	Connector* pOutConn;	//Value Assignment Stat. has one Connector to next statement
 	Connector* pInConn;	//Value Assignment Stat. has one Connector to next statement
@@ -23,17 +25,16 @@ private:
 	Point Inlet;	//A point where connections enters this statement 
 	//It's used as the (End) point of the (Input) connectors
 	Point Outlet;	//A point a connection leaves this statement
-	//It's used as the (End) point of the (Output) connector
+	//It's used as the (Start) point of the (Output) connector
 
-	Point middletop;	//left corenr of the statement block.
+	Point LeftCorner;	//left corenr of the statement block.
 
 	virtual void UpdateStatementText();
 
 public:
-	End(Point middletop);
+	Read(Point Lcorner, string Variable);
 
-	void setLHS(const string& L);
-	void setRHS(double R);
+	void SetVariable(const string& V);
 
 	virtual void Draw(Output* pOut) const;
 
@@ -49,7 +50,7 @@ public:
 	virtual char returnPointOut(Point& pOut); // Return the Outlet Point location
 	virtual bool IsOutletFull(); //Check if the Statment already have Outlet connetor
 
-	~End();
+	~Read();
 };
 
 #endif

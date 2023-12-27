@@ -8,6 +8,7 @@
 class Condtion : public Statement
 {
 private:
+	char ID = 1;
 	struct pOutConn {
 	public:
 		Connector* pOutConn;

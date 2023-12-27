@@ -8,6 +8,7 @@
 class OpAssign : public Statement
 {
 private:
+
 	string LHS;	//Left Handside of the assignment (name of a variable)
 	string RHS;	//Right Handside (Value)
 

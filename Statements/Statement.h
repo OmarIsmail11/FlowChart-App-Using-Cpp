@@ -14,15 +14,19 @@ protected:
 	string Text;	//Statement text (e.g.  "X = 5" OR "salary > 3000" and so on)
 	bool Selected;	//true if the statement is selected on the folwchart
 	int connectedCnt;
+	const int StateType;
 
 	virtual void UpdateStatementText() = 0;	//is called when any part of the stat. is edited	
 
 	/// Add more parameters if needed.
 
 public:
-	Statement();
+	Statement(int Type);
 	void SetSelected(bool s);
 	bool IsSelected() const;
+
+	void SetStatementID(int id);
+	int GetStatementID();
 
 	virtual void Draw(Output* pOut) const  = 0 ;	//Draw the statement
 	
