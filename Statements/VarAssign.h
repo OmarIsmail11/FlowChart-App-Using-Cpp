@@ -32,9 +32,12 @@ private:
 
 public:
 	VarAssign(Point Lcorner, string LeftHS, string RightHS);
-	VarAssign(VarAssign* varassign, Point position);
+	VarAssign(VarAssign* varassign, Point position);//copy constructor
 	void setLHS(const string& L);
 	void setRHS(double R);
+
+	string getLHS();//return the left hand side varaible
+	string getRHS();//return the Right hand side varaible
 
 	virtual void Draw(Output* pOut) const;
 
@@ -43,15 +46,13 @@ public:
 	virtual void SetConnectorOut(Connector* cn);
 	virtual void SetConnectorIn(Connector* cn);
 
-	virtual Connector** returnConnectors();
-	virtual int getConnCnt();
+	virtual Connector** returnConnectors();//retur all the connector for deleteion
+	virtual int getConnCnt();//number of connected connectors
 
 	virtual char returnPointIn(Point& pIn); //retrun the inlit Point
 	virtual char returnPointOut(Point& pOut); // Return the Outlet Point location
 	virtual bool IsOutletFull(); //Check if the Statment already have Outlet connetor
 
-	string GetLHS();
-	string GetRHS();
 	~VarAssign();
 };
 

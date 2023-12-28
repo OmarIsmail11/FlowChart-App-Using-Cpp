@@ -19,9 +19,9 @@ private:
 
 	Point Position;	//Position where the user clicks to add the stat.
 	string LHS;
-	string varName;
+	string RHS1;
 	string Operator;
-	double nom;
+	string RHS2;
 
 public:
 	AddOperatorAssign(ApplicationManager *pAppManager);

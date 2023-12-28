@@ -62,5 +62,6 @@ void AddValueAssign::Execute()
 	//      with the data members set and validated before in ReadActionParameters()
 
 	pManager->AddStatement(pAssign); // Adds the created statement to application manger's statement list
+	pManager->AddVariable(pAssign);
 }
 

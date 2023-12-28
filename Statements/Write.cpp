@@ -25,6 +25,11 @@ Write::Write(Point Lcorner, string Variable) :pOutConn(NULL),Statement(ITM_WRITE
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
+string Write::GetVariable()
+{
+	return Variable;
+}
+
 Write::Write(Write* write, Point position) :pOutConn(NULL), Statement(ITM_WRITE)
 {
 	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action

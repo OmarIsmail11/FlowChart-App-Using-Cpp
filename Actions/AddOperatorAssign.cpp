@@ -36,11 +36,11 @@ void AddOperatorAssign::ReadActionParameters()
 	pOut->PrintMessage("Please Enter Variable Name then press Enter: ");
 	LHS = pIn->GetVariable(pOut);
 	pOut->PrintMessage("Please Enter "+ LHS + "the other variable then press Enter : ");
-	varName = pIn->GetVariable(pOut);
+	RHS1 = pIn->GetString(pOut);
 	pOut->PrintMessage("Please Enter "+ LHS + "the other arithmatic Op then press Enter : ");
 	Operator = pIn->GetArithOperator(pOut);
-	pOut->PrintMessage("Please Enter "+ LHS + "the other arithmatic Op then press Enter : ");
-	nom = pIn->GetValue(pOut);
+	pOut->PrintMessage("Please Enter " + LHS + "the other variable then press Enter : ");
+	RHS2 = pIn->GetString(pOut);
 	//TODO: Ask the user in the status bar to enter the RHS and set the data member
 
 	//Note: You should validate the LHS to be variable name and RHS to be a value
@@ -59,11 +59,12 @@ void AddOperatorAssign::Execute()
 	Corner.x = Position.x - UI.ASSGN_WDTH/2;
 	Corner.y = Position.y ;
 
-	OpAssign*pAssign = new OpAssign(Corner, LHS, varName,Operator,nom);
+	OpAssign*pAssign = new OpAssign(Corner, LHS, RHS1,Operator, RHS2);
 
 	//TODO: should set the LHS and RHS of pAssign statement
 	//      with the data members set and validated before in ReadActionParameters()
 
 	pManager->AddStatement(pAssign); // Adds the created statement to application manger's statement list
+	pManager->AddVariable(pAssign);
 }
 

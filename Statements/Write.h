@@ -8,7 +8,6 @@
 class Write : public Statement
 {
 private:
-	int ID = 8;
 	string Variable;	//Left Handside of the assignment (name of a variable)
 	
 	Connector* Connectors[2];//put the connector in array
@@ -50,7 +49,7 @@ public:
 	virtual char returnPointIn(Point& pIn); //retrun the inlit Point
 	virtual char returnPointOut(Point& pOut); // Return the Outlet Point location
 	virtual bool IsOutletFull(); //Check if the Statment already have Outlet connetor
-
+	string GetVariable();
 	~Write();
 };
 

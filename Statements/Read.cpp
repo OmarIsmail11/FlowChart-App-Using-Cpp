@@ -45,6 +45,11 @@ Read::Read(Read* read, Point point) : Statement(ITM_READ)
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
+string Read::GetVariable()
+{
+	return Variable;
+}
+
 void Read::SetVariable(const string& V)
 {
 	this->Variable = V;
@@ -65,8 +70,8 @@ bool Read::IsPointInMe(Point clickedPoint)
 {
 	//if the point in the area of the assign return true
 	return (LeftCorner.x <= clickedPoint.x && LeftCorner.y <= clickedPoint.y &&
-		clickedPoint.x <= LeftCorner.x + UI.ASSGN_WDTH &&
-		clickedPoint.y <= LeftCorner.y + UI.ASSGN_HI);
+		clickedPoint.x <= LeftCorner.x + UI.READ_WRITE_WIDTH &&
+		clickedPoint.y <= LeftCorner.y + UI.READ_WRITE_HI);
 }
 void Read::SetConnectorIn(Connector* cn)
 {

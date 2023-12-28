@@ -18,7 +18,7 @@
 #include "GUI\Output.h"
 #include <iostream>
 //Constructor
-ApplicationManager::ApplicationManager()
+ApplicationManager::ApplicationManager():varcnt(0)
 {
 	//Create Input and output
 	pOut = new Output;
@@ -26,6 +26,7 @@ ApplicationManager::ApplicationManager()
 	
 	StatCount = 0;
 	ConnCount = 0;
+	
 	pSelectedStat = NULL;
 	pSelectedConn = NULL;	//no Statement is selected yet
 
@@ -107,7 +108,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new Select(this);
 			break;	
 		case PASTE:
-			pAct = new Select(this);
+			pAct = new Paste(this);
 			break;
 		case VALIDATE:
 			pAct = new Validate(this);
@@ -307,14 +308,142 @@ RetErrors ApplicationManager::Validation()
 	//case free Statement without connectors
 		for (int i = 0; i < StatCount; i++) {
 			if (!StatList[i]->IsOutletFull()) {
-				TheReturn =  FreeState;
+				return  FreeState;
 			}
 		}
-	
+
+	//valdiation for variables
+		{
+			
+
+			bool found = false, enteredCondtion = false;//checks wethet it found or not and if it is not entred or enter one of if statements
+			for (int i = 0; i < StatCount; i++) {
+				found = false;
+				enteredCondtion = false;
+				if (dynamic_cast<VarAssign*>(StatList[i])) {
+					string RHS = (dynamic_cast<VarAssign*>(StatList[i]))->getRHS();
+							enteredCondtion = true;
+					for (int j = 0; j < varcnt; j++) {
+						if (RHS == variables[j]) {
+							found = true;
+							break;
+						}
+
+					}
+				}
+				else if (dynamic_cast<OpAssign*>(StatList[i])) {
+					enteredCondtion = true;
+					string RHS1 = (dynamic_cast<OpAssign*>(StatList[i]))->getRHS1();
+					string RHS2 = (dynamic_cast<OpAssign*>(StatList[i]))->getRHS2();
+					if (IsValue(RHS1) && IsValue(RHS2)) {
+						found = true;
+						continue;
+					}
+					for (int j = 0; j < varcnt; j++) {
+						enteredCondtion = true;
+						if (RHS1 == variables[j] || RHS2 == variables[j]) {
+							found = true;
+						}
+
+					}
+				}
+				else if (dynamic_cast<Write*>(StatList[i])) {
+					enteredCondtion = true;
+					string Var = (dynamic_cast<Write*>(StatList[i]))->GetVariable();
+					
+					for (int j = 0; j < varcnt; j++) {
+						if (Var == variables[j]) {
+							found = true;
+							enteredCondtion = true;
+						}
+
+					}
+				}
+				else if (dynamic_cast<Condtion*>(StatList[i])) {
+					enteredCondtion = true;
+					string LHS = (dynamic_cast<Condtion*>(StatList[i]))->getLHS();
+					string RHS = (dynamic_cast<Condtion*>(StatList[i]))->getRHS();
+					if ((IsValue(LHS) && IsValue(RHS))) {
+						found = true;
+						break;
+					}
+					for (int j = 0; j < varcnt; j++) {
+						if (LHS == variables[j] || RHS == variables[j]) {
+							found = true;
+							break;
+						}
+
+					}
+				}
+				if (!found && enteredCondtion) {
+					return VarNotFound;
+				}
+			}
+		}
 	return TheReturn;
 }
 
+void ApplicationManager::DeleteVariable(Statement* Stat)
+{
+	if (dynamic_cast<ValueAssign*>(Stat)) {
+		string LHS = (dynamic_cast<ValueAssign*>(Stat))->getLHS();
+		for (int i = 0; i < StatCount; i++) {
+			if (LHS == variables[i]) {
+				variables[i] = "";
+				variables[i] = variables[(varcnt - 1)];
+				varcnt--;
+				return;
+			}
+		}
+	}
+	else if (dynamic_cast<VarAssign*>(Stat)) {
+		string LHS = (dynamic_cast<VarAssign*>(Stat))->getLHS();
+		for (int i = 0; i < StatCount; i++) {
+			if (LHS == variables[i]) {
+				variables[i] = "";
+				variables[i] = variables[(varcnt - 1)];
+				varcnt--;
+				return;
+			}
+		}
+	}
+	else if (dynamic_cast<OpAssign*>(Stat)) {
+			string LHS = (dynamic_cast<OpAssign*>(Stat))->getLHS();
+			for (int i = 0; i < StatCount; i++) {
+				if (LHS == variables[i]) {
+					variables[i] = "";
+					variables[i] = variables[(varcnt - 1)];
+					varcnt--;
+					return;
+				}
+			}
+		}
+		else if (dynamic_cast<Read*>(Stat)) {
+			string Var = (dynamic_cast<Read*>(Stat))->GetVariable();
+			for (int i = 0; i < StatCount; i++) {
+				if (Var == variables[i]) {
+					variables[i] = "";
+					variables[i] = variables[(varcnt - 1)];
+					varcnt--;
+					return;
+				}
+			}
+		}
+	return;
+	}
 
+void ApplicationManager::AddVariable(Statement* Stat)
+{
+	if (dynamic_cast<ValueAssign*>(Stat)) {
+		variables[varcnt++] = (dynamic_cast<ValueAssign*>(Stat))->getLHS();
+	}
+	else if (dynamic_cast<VarAssign*>(Stat))
+		variables[varcnt++] = (dynamic_cast<VarAssign*>(Stat))->getLHS();
+	else if (dynamic_cast<OpAssign*>(Stat))
+		variables[varcnt++] = (dynamic_cast<OpAssign*>(Stat))->getLHS();
+	else if (dynamic_cast<Read*>(Stat))
+		variables[varcnt++] = (dynamic_cast<Read*>(Stat))->GetVariable();
+}
 
 
 //Destructor

@@ -11,12 +11,12 @@ Condtion::Condtion(Point TVertix, string LeftHS, string Oper, string RightHS):St
 	CompOperator = Oper;
 	RHS = RightHS;
 
-	R.YesNo = "NULL";
-	L.YesNo = "NULL";
 	R.pOutConn = NULL;
 	L.pOutConn = NULL;
+	pInConn = NULL;
 	connectedCnt = 3;
-	for (int i = 0; i < 2; i++) {
+	counter = 0;
+	for (int i = 0; i < 3; i++) {
 		Connectors[i] = NULL;
 	}
 	this->
@@ -41,13 +41,13 @@ Condtion::Condtion(Condtion* CopiedCond, Point TVertix) :Statement(ITM_COND)
 	LHS = CopiedCond->LHS;
 	CompOperator = CopiedCond->CompOperator;
 	RHS = CopiedCond->RHS;
-	R.YesNo = "NULL";
-	L.YesNo = "NULL";
 	R.pOutConn = NULL;
 	L.pOutConn = NULL;
+	pInConn = NULL;
 	connectedCnt = 3;
+	counter = 0;
 
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 3; i++) {
 		Connectors[i] = NULL;
 	}
 	this->UpdateStatementText();
@@ -92,9 +92,9 @@ void Condtion::Draw(Output* pOut) const
 bool Condtion::IsPointInMe(Point clickedPoint)
 {
 	//if the point in the area of the assign return true
-	return (TopVertix.x <= clickedPoint.x && TopVertix.y <= clickedPoint.y &&
-		clickedPoint.x <= TopVertix.x + UI.ASSGN_WDTH &&
-		clickedPoint.y <= TopVertix.y + UI.ASSGN_HI);
+	return ((TopVertix.x - 0.5*UI.COND_WDTH) <= clickedPoint.x && TopVertix.y <= clickedPoint.y &&
+		clickedPoint.x <= (TopVertix.x + 0.5 * UI.COND_WDTH) &&
+		clickedPoint.y <= TopVertix.y + UI.COND_HI);
 }
 void Condtion::SetConnectorIn(Connector* cn)
 {
@@ -104,19 +104,32 @@ void Condtion::SetConnectorIn(Connector* cn)
 
 void Condtion::SetConnectorOut(Connector* cn)
 {
-	if (WhichConnectorOut.x = OutletL.x) {
-		L.pOutConn = cn;
-		L.YesNo = "NO";
+	if (cn == NULL) {
+		if (Connectors[0])
+			 {
+			L.pOutConn == cn;
+			Connectors[2] = L.pOutConn;
+		}
+		else
+		{
+			R.pOutConn == cn;
+			Connectors[0] = R.pOutConn;
+		}
 		return;
 	}
+	if (TopVertix.x > WhichConnectorOut.x) {
+		L.pOutConn = cn;
+		return;
+		Connectors[2] = cn;
+	}
 	R.pOutConn = cn;
-	R.YesNo = "YES";
+		Connectors[0] = cn;
 }
 
 Connector** Condtion::returnConnectors()
 {
 	return Connectors;
-}
+	}
 
 int Condtion::getConnCnt()
 {
@@ -141,14 +154,15 @@ char Condtion::returnPointOut(Point& pOut)
 }
 bool Condtion::IsOutletFull()
 {
-	if (R.pOutConn != NULL && L.pOutConn != NULL)
+	if (R.pOutConn &&  L.pOutConn)
 		return true;
 
 	return false;
 }
 Condtion::~Condtion()
 {
-		
+	R.pOutConn = NULL;
+	L.pOutConn = NULL;
 }
 //This function should be called when LHS or RHS changes
 void Condtion::UpdateStatementText()
@@ -157,4 +171,11 @@ void Condtion::UpdateStatementText()
 	ostringstream T;
 	T<<LHS<<" "<< this->CompOperator<<" "<< RHS;
 	Text = T.str();	 
+}
+
+string Condtion::getLHS() {
+	return LHS;
+}
+string Condtion::getRHS() {
+	return RHS;
 }

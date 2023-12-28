@@ -2,7 +2,7 @@
 
 Statement::Statement(int Type):StateType(Type)
 { 
-	//TODO: set the ID with a unique value
+	
 	Text = "";
 	Selected = false;		
 }

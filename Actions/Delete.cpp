@@ -48,6 +48,7 @@ void Delete::Execute()
 				pManager->DeleteConn(DelMe); //delete the connected connectors "no free conn remeber?"
 			}
 		}
+		pManager->DeleteVariable(stat); //delete the Statement
 		pManager->DeleteStatement(stat); //delete the Statement
 	}
 	else {

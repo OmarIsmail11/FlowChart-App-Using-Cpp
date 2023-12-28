@@ -31,6 +31,8 @@ private:
 	Input *pIn;
 	Output *pOut;
 
+	string variables[30];
+	int varcnt;
 
 public:	
 	ApplicationManager(); 
@@ -65,6 +67,9 @@ public:
 	Input *GetInput() const;        //Return pointer to the input
 	Output *GetOutput() const;      //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window
+
+	void DeleteVariable(Statement* Stat);
+	void AddVariable(Statement* Stat);
 
 	RetErrors ApplicationManager::Validation();
 

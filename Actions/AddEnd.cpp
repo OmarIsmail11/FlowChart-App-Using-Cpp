@@ -25,7 +25,7 @@ void AddEnd::ReadActionParameters()
 	pIn->GetPointClicked(Position);
 	pOut->ClearStatusBar();
 	while (Position.y >= (UI.height - UI.ToolBarHeight) || Position.y <= UI.ToolBarHeight || Position.x >= UI.DrawingAreaWidth) {
-		if (Position.y <= 50 && Position.x >= UI.MenuItemWidth * ADD_START && Position.x <= UI.MenuItemWidth * (1 + ADD_START)) //if the user want to cancel he can click on the toolbar
+		if (Position.y <= 50 && Position.x >= UI.MenuItemWidth * ADD_END && Position.x <= UI.MenuItemWidth * (1 + ADD_END)) //if the user want to cancel he can click on the toolbar
 			return;
 		Pause(100);//wait before show this mesage to make it not apearing as freezed give more dynamicaly
 		pManager->GetOutput()->PrintMessage("this region is not allowed put it in drwing area!!");
@@ -41,7 +41,7 @@ void AddEnd::Execute()
 {
 	ReadActionParameters();
 
-	if (Position.y <= 50 && Position.x >= UI.MenuItemWidth * ADD_VAR_ASSIGN && Position.x <= UI.MenuItemWidth * (1 + ADD_VAR_ASSIGN)) //if the user want to cancel he can click on the toolbar
+	if (Position.y <= 50 && Position.x >= UI.MenuItemWidth * ADD_END && Position.x <= UI.MenuItemWidth * (1 + ADD_END)) //if the user want to cancel he can click on the toolbar
 		return;
 
 	//Calculating left corner of assignement statement block

@@ -10,11 +10,12 @@ class OpAssign : public Statement
 private:
 
 	string LHS;	//Left Handside of the assignment (name of a variable)
-	string RHS;	//Right Handside (Value)
+	string RHS1;	//Right Handside1 (Value)
+	string RHS2;	//Right Handside2 (Value)
 
-	string VarName;
+
 	string Operator;
-	double nom;
+
 
 	Connector* Connectors[2];//put the connector in array
 	Connector* pOutConn;	//Value Assignment Stat. has one Connector to next statement
@@ -30,10 +31,15 @@ private:
 	virtual void UpdateStatementText();
 
 public:
-	OpAssign(Point Lcorner, string LeftHS, string VarName, string Op, double nomb);
+	OpAssign(Point Lcorner, string LeftHS, string RHS1, string Op, string RHS2);
 	OpAssign(OpAssign* opassign, Point position);
+
 	void setLHS(const string& L);
 	void setRHS(double R);
+	
+	string getLHS();
+	string getRHS1();
+	string getRHS2();
 
 	virtual void Draw(Output* pOut) const;
 

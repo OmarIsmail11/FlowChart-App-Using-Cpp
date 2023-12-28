@@ -27,8 +27,11 @@ void Validate::Execute()
 	case StartNoIn:
 		pOut->PrintMessage("Errror! Start can't Have Inlet Connector");
 		return;
+	case VarNotFound:
+		pOut->PrintMessage("Errror! Missing variable");
+		return;
 	case OK:
-		pOut->PrintMessage("OKay");
+		pOut->PrintMessage("There is No Errors.");
 		return;
 	}
 }

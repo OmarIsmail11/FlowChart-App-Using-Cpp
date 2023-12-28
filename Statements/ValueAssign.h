@@ -38,6 +38,9 @@ public:
 	
 	void setLHS(const string &L);
 	void setRHS(double R);
+	
+	string getLHS();//return the left hand side varaible
+	int getRHS();//return the Righ hand side value
 
 	virtual void Draw(Output* pOut) const;
 

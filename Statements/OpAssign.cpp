@@ -3,14 +3,14 @@
 
 using namespace std;
 
-OpAssign::OpAssign(Point Lcorner, string LeftHS, string VarName, string Op,double nomb) :pOutConn(NULL),Statement(ITM_OPER_ASSIGN)
+
+
+OpAssign::OpAssign(Point Lcorner, string LeftHS, string RHS1, string Op, string RHS2) :pOutConn(NULL), Statement(ITM_OPER_ASSIGN)
 {
-	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
-	//       before passing it to the constructor of VarAssign
-	LHS = LeftHS;
-	this->VarName = VarName;
-	Operator = Op;
-	nom = nomb;
+	this->LHS = LeftHS;
+	this->RHS1 = RHS1;
+	this->Operator = Op;
+	this->RHS2 = RHS2;
 	for (int i = 0; i < 2; i++) {
 		Connectors[i] = NULL;
 	}
@@ -27,14 +27,14 @@ OpAssign::OpAssign(Point Lcorner, string LeftHS, string VarName, string Op,doubl
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
-OpAssign::OpAssign(OpAssign* opassign, Point position) :Statement(ITM_OPER_ASSIGN)
+OpAssign::OpAssign(OpAssign* opassign, Point position) :pOutConn(NULL) ,Statement(ITM_OPER_ASSIGN)
 {
 	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
 	//       before passing it to the constructor of VarAssign
 	this->LHS = opassign->LHS;
-	this->VarName = opassign->VarName;
+	this->RHS1 = opassign->RHS1;
 	this->Operator = opassign->Operator;
-	this->nom = opassign->nom;
+	this->RHS2 = opassign->RHS2;
 	for (int i = 0; i < 2; i++) {
 		Connectors[i] = NULL;
 	}
@@ -111,6 +111,17 @@ void OpAssign::UpdateStatementText()
 {
 	//Build the statement text: Left handside then equals then right handside
 	ostringstream T;
-	T << LHS << " = " << VarName<<Operator<<nom;
+	T << LHS << " = " << RHS1 <<Operator<< RHS2;
 	Text = T.str();
+}
+
+
+string OpAssign::getLHS() {
+	return LHS;
+}
+string OpAssign::getRHS1() {
+	return RHS1;
+}
+string OpAssign::getRHS2() {
+	return RHS2;
 }

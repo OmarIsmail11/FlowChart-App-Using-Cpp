@@ -32,34 +32,22 @@ public:
 	
 	virtual bool IsPointInMe(Point clickedPoint) = 0; //this function checks if the entered point is in it's area
 
-	virtual void SetConnectorOut(Connector* cn) = 0;
+	virtual void SetConnectorOut(Connector* cn) = 0; //set the outlet connector to be traked
 	virtual void SetConnectorIn(Connector* cn) = 0;
 
-	virtual Connector** returnConnectors() = 0;
-	virtual int getConnCnt()= 0;
+	virtual Connector** returnConnectors() = 0; // return all connected connectors for deletion
+	virtual int getConnCnt()= 0;//the coun of connected connectors
 	
-	virtual char returnPointIn(Point &pIn) = 0;//retrun the inlit Point
-	virtual char returnPointOut(Point& pOut) = 0; // Return the Outlet Point location
+	virtual char returnPointIn(Point &pIn) = 0;//retrun the inlit Point and the connectors arrow direction
+	virtual char returnPointOut(Point& pOut) = 0; // Return the Outlet Point location and the way to go out (ex : from right down or left)
 
 	
 	virtual bool IsOutletFull() = 0; //Add connector to the Statment
 
-	int GetStatementType();
-	///TODO:The following functions should be supported by the Statement class
-	///		It should then be overridden by each derived Statement
-	///		Decide the parameters that you should pass to each function and its return type
-
-	//virtual void Save(ofstream &OutFile) = 0;	//Save the Statement parameters to a file
-	//virtual void Load(ifstream &Infile) = 0;	//Load the Statement parameters from a file
-
-	//virtual void Edit() = 0;		//Edit the Statement parameter
-
-	//virtual void Simulate();	//Execute the statement in the simulation mode
-
-	//[BONUS] virtual void GenerateCode(ofstream &OutFile) = 0;	//write the statement code to a file
+	int GetStatementType();//return the statement type froms it's item enum
 
 
-	///TODO: Add more functions if needed
+
 
 };
 

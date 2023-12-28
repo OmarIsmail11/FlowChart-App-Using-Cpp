@@ -108,14 +108,13 @@ bool ValueAssign::IsOutletFull()
 	return pOutConn != NULL;
 }
 
-string ValueAssign::GetLHS() {
+
+string ValueAssign::getLHS() {
 	return LHS;
 }
-int ValueAssign::GetRHS()
-{
+int ValueAssign::getRHS() {
 	return RHS;
 }
-
 
 ValueAssign::~ValueAssign()
 {

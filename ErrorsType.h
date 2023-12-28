@@ -4,5 +4,6 @@ enum RetErrors {
 	MultiOrNoEnd,
 	FreeState,
 	StartNoIn,
+	VarNotFound,
 	OK
 };

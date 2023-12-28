@@ -47,10 +47,7 @@ VarAssign::VarAssign(VarAssign* varassign, Point position) :pOutConn(NULL), Stat
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
-string VarAssign::GetLHS()
-{
-	return LHS;
-}
+
 
 void VarAssign::setLHS(const string& L)
 {
@@ -119,12 +116,13 @@ VarAssign::~VarAssign()
 {
 
 }
-
-
-string VarAssign::GetRHS()
-{
+string VarAssign::getLHS() {
+	return LHS;
+}
+string VarAssign::getRHS() {
 	return RHS;
 }
+
 //This function should be called when LHS or RHS changes
 void VarAssign::UpdateStatementText()
 {
