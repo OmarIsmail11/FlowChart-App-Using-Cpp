@@ -61,14 +61,13 @@ void Read::SetVariable(const string& V)
 
 void Read::Draw(Output* pOut) const
 {
-	//Call Output::DrawAssign function to draw assignment statement 	
 	pOut->DrawInput(LeftCorner, UI.READ_WRITE_WIDTH, UI.READ_WRITE_HI, Text, Selected);
 
 }
 
 bool Read::IsPointInMe(Point clickedPoint)
 {
-	//if the point in the area of the assign return true
+	//if the point in the area of the the Read return true
 	return (LeftCorner.x <= clickedPoint.x && LeftCorner.y <= clickedPoint.y &&
 		clickedPoint.x <= LeftCorner.x + UI.READ_WRITE_WIDTH &&
 		clickedPoint.y <= LeftCorner.y + UI.READ_WRITE_HI);

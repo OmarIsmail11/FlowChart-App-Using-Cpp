@@ -15,10 +15,10 @@ private:
 public:
 	AddConnect(ApplicationManager *pManager);
 
-	//Reads rectangle parameters
+	//reads connecotrs start and end points
 	virtual void ReadActionParameters();
 	
-	//Add rectangle to the ApplicationManager
+	//Add connecotr to the ApplicationManager
 	virtual void Execute();
 	
 };

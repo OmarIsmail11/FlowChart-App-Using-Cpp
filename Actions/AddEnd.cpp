@@ -41,6 +41,12 @@ void AddEnd::Execute()
 {
 	ReadActionParameters();
 
+	Output* pOut = pManager->GetOutput();
+	if (pManager->GetStatement(Position)) {
+		pOut->PrintMessage("Sorry it will overLab on another statment.");
+		return;
+	}
+
 	if (Position.y <= 50 && Position.x >= UI.MenuItemWidth * ADD_END && Position.x <= UI.MenuItemWidth * (1 + ADD_END)) //if the user want to cancel he can click on the toolbar
 		return;
 

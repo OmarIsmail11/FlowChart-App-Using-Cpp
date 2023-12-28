@@ -3,8 +3,8 @@
 
 #include "Statement.h"
 
-//Value Assignment statement class
-//The value assignment statement assigns a value to a variable
+//Condtion statement class
+//The Condtion statement cmpare between 2 variables of values or both
 class Condtion : public Statement
 {
 private:

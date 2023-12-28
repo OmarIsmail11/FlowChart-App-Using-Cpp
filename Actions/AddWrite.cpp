@@ -14,7 +14,12 @@ AddWrite::AddWrite(ApplicationManager *pAppManager):Action(pAppManager)
 void AddWrite::ReadActionParameters()
 {
 	Input *pIn = pManager->GetInput();
-	Output *pOut = pManager->GetOutput();
+
+	Output* pOut = pManager->GetOutput();
+	if (pManager->GetStatement(Position)) {
+		pOut->PrintMessage("Sorry it will overLab on another statment.");
+		return;
+	}
 	
 	//Read the (Position) parameter
 	pOut->PrintMessage("Read Statement: Click to add the statement");

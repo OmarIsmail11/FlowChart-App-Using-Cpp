@@ -17,10 +17,10 @@ private:
 public:
 	AddCond(ApplicationManager *pAppManager);
 
-	//Read Assignemt statements position
+	//Read Condtion statements position
 	virtual void ReadActionParameters();
 	
-	//Create and add an assignemnt statement to the list of statements
+	//Create and add an Condtion statement to the list of statements
 	virtual void Execute() ;
 	
 };

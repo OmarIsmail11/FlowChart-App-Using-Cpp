@@ -3,8 +3,8 @@
 
 #include "Statement.h"
 
-//Value Assignment statement class
-//The value assignment statement assigns a value to a variable
+//END statement class
+//The END statement
 class End : public Statement
 {
 private:

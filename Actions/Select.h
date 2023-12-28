@@ -3,7 +3,7 @@
 #include "..\Statements\Statement.h"
 #include "Action.h"
 
-//Add Rectangle Action class
+//Slecet Statement or Connector
 
 class Select: public Action
 {
@@ -12,10 +12,10 @@ private:
 public:
 	Select(ApplicationManager *pManager);
 
-	//Reads rectangle parameters
+	//read point of statement 
 	virtual void ReadActionParameters();
 	
-	//Add rectangle to the ApplicationManager
+	//Select it or unslect it if not selected
 	virtual void Execute() ;
 	
 };

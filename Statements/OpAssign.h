@@ -3,8 +3,8 @@
 
 #include "Statement.h"
 
-//Value Assignment statement class
-//The value assignment statement assigns a value to a variable
+//Operator Assignment statement class
+//The Operator assignment statement assigns a value by arithmatic opearator to a variable
 class OpAssign : public Statement
 {
 private:

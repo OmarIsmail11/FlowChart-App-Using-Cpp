@@ -12,7 +12,7 @@
 #include "..\Statements\End.h"
 #include "Action.h"
 
-//Add Rectangle Action class
+//Make VAlidation before running
 
 class Validate: public Action
 {
@@ -21,10 +21,10 @@ private:
 public:
 	Validate(ApplicationManager *pManager);
 
-	//Reads rectangle parameters
+	
 	virtual void ReadActionParameters();
 	
-	//Add rectangle to the ApplicationManager
+	
 	virtual void Execute() ;
 	
 };

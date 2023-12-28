@@ -37,6 +37,7 @@ void AddValueAssign::ReadActionParameters()
 	LHS = pIn->GetVariable(pOut);
 	pOut->PrintMessage("Please Enter the "+ LHS + " Value then press Enter : ");
 	RHS = pIn->GetValue(pOut);
+	
 	//TODO: Ask the user in the status bar to enter the RHS and set the data member
 
 	//Note: You should validate the LHS to be variable name and RHS to be a value
@@ -46,7 +47,11 @@ void AddValueAssign::ReadActionParameters()
 void AddValueAssign::Execute()
 {
 	ReadActionParameters();
-		
+	Output* pOut = pManager->GetOutput();
+	if (pManager->GetStatement(Position)) {
+		pOut->PrintMessage("Sorry it will overLab on another statment.");
+		return;
+	}
 	if (Position.y <= 50 && Position.x >= UI.MenuItemWidth * ADD_VALUE_ASSIGN && Position.x <= UI.MenuItemWidth * (1 + ADD_VALUE_ASSIGN)) //if the user want to cancel he can click on the toolbar
 		return;
 	//Calculating left corner of assignement statement block

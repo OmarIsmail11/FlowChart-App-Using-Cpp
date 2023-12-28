@@ -41,18 +41,17 @@ End::End(End* end, Point position) :Statement(ITM_END)
 }
 
 void End::Draw(Output* pOut) const
-{
-	//Call Output::DrawAssign function to draw assignment statement 	
+{ 	
 	pOut->DrawEnd(middletop, UI.START_END_WIDTH, UI.START_END_HI, Selected);
 
 }
 
 bool End::IsPointInMe(Point clickedPoint)
 {
-	//if the point in the area of the assign return true
+	//if the point in the area of the END return true
 	return (middletop.x <= clickedPoint.x && middletop.y <= clickedPoint.y &&
-		clickedPoint.x <= middletop.x + UI.ASSGN_WDTH &&
-		clickedPoint.y <= middletop.y + UI.ASSGN_HI);
+		clickedPoint.x <= middletop.x + UI.START_END_WIDTH &&
+		clickedPoint.y <= middletop.y + UI.START_END_HI);
 }
 void End::SetConnectorIn(Connector* cn)
 {

@@ -4,7 +4,7 @@
 #include "Action.h"
 
 
-//Add Rectangle Action class
+//Delete selected statement or connector
 
 class Delete: public Action
 {
@@ -14,12 +14,13 @@ private:
 	Connector* slctedConn;
 
 public:
+
 	Delete(ApplicationManager *pManager);
 
-	//Reads rectangle parameters
+	//Reads statement location
 	virtual void ReadActionParameters();
 	
-	//Add rectangle to the ApplicationManager
+	//Delete it from appamanger
 	virtual void Execute() ;
 	
 };

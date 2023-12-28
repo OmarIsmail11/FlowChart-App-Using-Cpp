@@ -53,6 +53,7 @@ void AddConnect::Execute()
 	Statement* StOut = pManager->GetStatement(pointOut); // get outlet Statement 
 	Statement* StIn = pManager->GetStatement(pointIn);// get the inlet Statement
 
+
 	if (pointIn.y < 50 || pointOut.y < 50)
 		return;
 
