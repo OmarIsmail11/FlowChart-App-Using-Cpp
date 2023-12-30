@@ -1,7 +1,7 @@
 # FLowChart windows application Using c++
 
 ## Overview
-This C++ which was college project is a flowchart application that allows users to create, edit, and visualize flowcharts. It provides a user-friendly interface for designing and analyzing processes through flowchart diagrams.
+This C++ <img src="https://raw.githubusercontent.com/isocpp/logos/master/cpp_logo.png" alt="C++ Logo" width="50" height="50" />which was college project is a flowchart application that allows users to create, edit, and visualize flowcharts. It provides a user-friendly interface for designing and analyzing processes through flowchart diagrams.
 
 ## Project Structure
 
