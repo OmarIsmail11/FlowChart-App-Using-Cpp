@@ -44,8 +44,12 @@ void Delete::Execute()
 
 			if (StatConnArr[i] != NULL) { //Checks if the Statment connected to anny Statment
 				Connector* DelMe = StatConnArr[i]; //create tempraory pointer to connector to free it's source without make clashes 
+				try{
 				DelMe->getSrcStat()->SetConnectorOut(NULL);//makes the src free of connectors
 				pManager->DeleteConn(DelMe); //delete the connected connectors "no free conn remeber?"
+				throw("hell");
+				}
+				catch (char *x) {};
 			}
 		}
 		pManager->DeleteVariable(stat); //delete the Statement

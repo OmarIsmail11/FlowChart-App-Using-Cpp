@@ -1015,6 +1015,10 @@ void window::DrawArrow(const int iX1, const int iY1, const int iX2, const int iY
 			DrawLine(iX2, newY1, iX2, iY2);
 			break;
 		case 0:
+			DrawLine(newX1, newY1, iX2-(iX2- newX1)*0.5, newY1);
+			newX1 = iX2 - (iX2 - newX1) * 0.5;
+			DrawLine(newX1, newY1, newX1, iY2-20);
+			newY1 =iY2 - 20;
 			DrawLine(newX1, newY1, iX2, newY1);
 			DrawLine(iX2, newY1, iX2, iY2);
 		default:

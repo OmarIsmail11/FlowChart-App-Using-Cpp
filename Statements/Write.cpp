@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Write::Write(Point Lcorner, string Variable) :pOutConn(NULL),Statement(ITM_WRITE)
+Write::Write(Point Lcorner, string Variable) :pOutConn(NULL),Statement(ITM_READ)
 {
 	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
 	//       before passing it to the constructor of Write
@@ -25,16 +25,9 @@ Write::Write(Point Lcorner, string Variable) :pOutConn(NULL),Statement(ITM_WRITE
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
-string Write::GetVariable()
+Write::Write(Write* read, Point point) : Statement(ITM_WRITE)
 {
-	return Variable;
-}
-
-Write::Write(Write* write, Point position) :pOutConn(NULL), Statement(ITM_WRITE)
-{
-	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
-	//       before passing it to the constructor of Write
-	this->Variable = write->Variable;
+	this->Variable = read->Variable;
 
 	for (int i = 0; i < 2; i++) {
 		Connectors[i] = NULL;
@@ -42,7 +35,7 @@ Write::Write(Write* write, Point position) :pOutConn(NULL), Statement(ITM_WRITE)
 	connectedCnt = 2;
 	UpdateStatementText();
 
-	LeftCorner = position;
+	LeftCorner = point;
 	//No connectors yet
 
 	Inlet.x = LeftCorner.x + UI.ASSGN_WDTH / 2;
@@ -50,6 +43,11 @@ Write::Write(Write* write, Point position) :pOutConn(NULL), Statement(ITM_WRITE)
 
 	Outlet.x = Inlet.x;
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
+}
+
+string Write::GetVariable()
+{
+	return Variable;
 }
 
 void Write::SetVariable(const string& V)
@@ -63,17 +61,16 @@ void Write::SetVariable(const string& V)
 
 void Write::Draw(Output* pOut) const
 {
-	//Call Output::DrawAssign function to draw assignment statement 	
 	pOut->DrawInput(LeftCorner, UI.READ_WRITE_WIDTH, UI.READ_WRITE_HI, Text, Selected);
 
 }
 
 bool Write::IsPointInMe(Point clickedPoint)
 {
-	//if the point in the area of the assign return true
+	//if the point in the area of the the Write return true
 	return (LeftCorner.x <= clickedPoint.x && LeftCorner.y <= clickedPoint.y &&
-		clickedPoint.x <= LeftCorner.x + UI.ASSGN_WDTH &&
-		clickedPoint.y <= LeftCorner.y + UI.ASSGN_HI);
+		clickedPoint.x <= LeftCorner.x + UI.READ_WRITE_WIDTH &&
+		clickedPoint.y <= LeftCorner.y + UI.READ_WRITE_HI);
 }
 void Write::SetConnectorIn(Connector* cn)
 {

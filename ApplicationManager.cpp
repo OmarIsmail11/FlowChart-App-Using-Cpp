@@ -93,11 +93,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 			break;	
 		case ADD_READ:
-			pAct = new AddWrite(this);
+			pAct = new AddRead(this);
 
 			break;
 		case ADD_WRITE:
-			pAct = new AddRead(this);
+			pAct = new AddWrite(this);
 
 			break;
 		case ADD_CONNECTOR:
