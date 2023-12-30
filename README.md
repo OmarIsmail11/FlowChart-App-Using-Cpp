@@ -5,6 +5,15 @@ This C++ project is a flowchart application that allows users to create, edit, a
 
 ## Project Structure
 
+\033[1;36m|-- \033[1;34minclude\033[1;36m
+|   |-- \033[1;34mStatement.h\033[1;36m
+|   |-- \033[1;34mStart.h\033[1;36m
+|   |-- \033[1;34mEnd.h\033[1;36m
+|   |-- \033[1;34mOpAssign.h\033[1;36m
+|   |-- \033[1;34mRead.h\033[1;36m
+|   |-- \033[1;34mValueAssign.h\033[1;36m
+|   |-- \033[1;34mVarAssign.h\033[1;36m
+|   |-- \033[1;34mWrite.h\033[1;36m
 ```C++
 /flowchart-app
 |-- src
