@@ -30,7 +30,9 @@ This C++ project is a flowchart application that allows users to create, edit, a
 |   |-- ValueAssign.h
 |   |-- VarAssign.h
 |   |-- Write.h
-|-- diagrams
-|   |-- ClassDiagram.cdte.h
+|--Actions
+|   |-- Action.cpp
+---include
+|   |-- Action.h
 |-- diagrams
 |   |-- ClassDiagram.cd
