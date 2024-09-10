@@ -46,7 +46,20 @@ This Windows Flow Chart Application is a user-friendly tool for designing, editi
 |   |-- ClassDiagram.cd
 ```
 ## Demo
+https://github.com/user-attachments/assets/cdb02d17-950b-41b0-8bd5-810af6758adf
 
-## How to Install & Use
+## Installation
+Note: To run the game, make sure you have Python 3.x installed.
+1. Clone the repository
+```
+ git clone https://github.com/OmarIsmail11/Uno-Card-Game-PvP.git
+```
+2. Navigate to the project directory
+```
+ cd FolderName
+```
+3. In Visual Studio run the main.cpp file
 
+Note: Make Sure all the source files are downloaded and as sometimes some of the project folders aren't all loaded in Visual Studio and results in a Linker error (LNK).
+If this error occured, copy the missing source files in VS from the folder itself (project directory) and paste in VS manually. This may happen in statements & actions files.  
 
