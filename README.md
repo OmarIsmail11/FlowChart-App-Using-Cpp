@@ -1,8 +1,16 @@
 # FLowChart windows application Using c++
 
 ## Overview
-This C++   <img src="https://raw.githubusercontent.com/isocpp/logos/master/cpp_logo.png" alt="C++ Logo" width="20" height="20" style = " transform: translateY(10);">  which was college project is a flowchart application that allows users to create, edit, and visualize flowcharts. It provides a user-friendly interface for designing and analyzing processes through flowchart diagrams.
-
+This Windows Flow Chart Application is a user-friendly tool for designing, editing, and managing flow charts. It allows users to visually map out processes, workflows, or algorithms with ease providing an intuitive interface for creating professional flow charts. Designed for simplicity and efficiency, this application helps streamline complex workflows into clear, structured visualizations. Whether you're planning software architectures, business processes, or educational diagrams, this tool provides an intuitive interface for creating professional flow charts. 
+## Features
+- Modern Easy to Use GUI
+- Drag-and-Drop Interface
+- Smooth Connectors
+- Auto-Align and Snap
+- Undo/Redo Functionality
+- Copy/Paste Shapes
+- Project Save/Load
+- Auto FlowChart Validation
 ## Project Structure
 
 ```C++
