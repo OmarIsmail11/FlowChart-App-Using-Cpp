@@ -12,7 +12,7 @@ This Windows Flow Chart Application is a user-friendly tool for designing, editi
 - Drag-and-Drop Interface
 - Smooth Connectors
 - Auto-Align and Snap
-- Copy/Paste Shapes
+- Copy/Paste/Delete Shapes
 - FlowChart Save/Load
 - Auto FlowChart Validation
 ## Project Structure
