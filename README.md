@@ -1,15 +1,15 @@
 # FLowChart windows application Using c++
+![Flow Chart](https://github.com/user-attachments/assets/61ca0971-7bca-4235-b763-2664da2544b3)
 
-## Overview
+## About
 This Windows Flow Chart Application is a user-friendly tool for designing, editing, and managing flow charts. It allows users to visually map out processes, workflows, or algorithms with ease providing an intuitive interface for creating professional flow charts. Designed for simplicity and efficiency, this application helps streamline complex workflows into clear, structured visualizations. Whether you're planning software architectures, business processes, or educational diagrams, this tool provides an intuitive interface for creating professional flow charts. 
 ## Features
 - Modern Easy to Use GUI
 - Drag-and-Drop Interface
 - Smooth Connectors
 - Auto-Align and Snap
-- Undo/Redo Functionality
 - Copy/Paste Shapes
-- Project Save/Load
+- FlowChart Save/Load
 - Auto FlowChart Validation
 ## Project Structure
 
@@ -45,3 +45,8 @@ This Windows Flow Chart Application is a user-friendly tool for designing, editi
 |-- diagrams
 |   |-- ClassDiagram.cd
 ```
+## Demo
+
+## How to Install & Use
+
+
