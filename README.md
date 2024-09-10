@@ -1,4 +1,4 @@
-# FLowChart windows application Using c++
+# FLowChart Windows Application Using C++
 ![Flow Chart](https://github.com/user-attachments/assets/61ca0971-7bca-4235-b763-2664da2544b3)
 
 ## About
