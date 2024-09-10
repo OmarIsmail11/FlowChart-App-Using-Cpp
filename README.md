@@ -49,7 +49,7 @@ This Windows Flow Chart Application is a user-friendly tool for designing, editi
 https://github.com/user-attachments/assets/cdb02d17-950b-41b0-8bd5-810af6758adf
 
 ## Installation
-Note: To run the game, make sure you have Python 3.x installed.
+Note: To run the app, make sure you have Visual Studio installed.
 1. Clone the repository
 ```
  https://github.com/OmarIsmail11/FlowChart-App-Using-Cpp.git
