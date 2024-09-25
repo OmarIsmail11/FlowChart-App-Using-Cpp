@@ -64,6 +64,6 @@ Note: To run the app, make sure you have Visual Studio installed.
 ```
 3. In Visual Studio run the main.cpp file
 
-Note: Make Sure all the source files are downloaded and as sometimes some of the project folders aren't all loaded in Visual Studio and results in a Linker error (LNK).
+Note: Make Sure all the source files are properly downloaded as sometimes some of the project files aren't all loaded in Visual Studio and results in a Linker error (LNK).
 If this error occured, copy the missing source files in VS from the folder itself (project directory) and paste in VS manually. This may happen in statements & actions files.  
 
